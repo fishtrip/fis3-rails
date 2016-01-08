@@ -17,7 +17,7 @@ module Fis3
           asset_deps(source).select{ |s| s.end_with?(".css") || s.end_with?(".scss") }
         end
 
-        private
+        #private
         
         def asset_info(source)
           manifest['res'][source] || {}

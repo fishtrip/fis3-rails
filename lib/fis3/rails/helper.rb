@@ -9,12 +9,6 @@ module Fis3
       JS_SUFFIX = ['.js', '.jsx']
       CSS_SUFFIX = ['.css', '.scss']
 
-      def fis3_javascript_placeholder
-        content_for(JS_PLACEHOLDER)
-      end
-      def fis3_stylesheet_placeholder
-        content_for(CSS_PLACEHOLDER)
-      end
       def fis3_javascript_tag(source)
         content_for JS_PLACEHOLDER do
           javascript_include_tag(fis3_js_path(source))
@@ -34,7 +28,7 @@ module Fis3
         end
       end
 
-      private
+      #private
       
       def fis3_css_path(source)
         fis3_smart_asset_path(source, CSS_SUFFIX)
