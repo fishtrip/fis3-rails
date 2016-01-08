@@ -5,7 +5,13 @@ module Fis3
 
         def asset_path(source)
           info = asset_info(source)
-          info['aioPkg'] || info['uri'] || ""
+          pkg = info['aioPkg']
+
+          if pkg.present?
+            return manifest['pkg'][pkg]['uri']
+          end
+            
+          info['uri'] || ""
         end
 
         def asset_deps(source)
