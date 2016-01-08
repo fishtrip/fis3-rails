@@ -1,4 +1,5 @@
 require 'action_view'
+require 'active_support'
 require 'fis3/rails/manifest'
 
 module Fis3
@@ -43,7 +44,7 @@ module Fis3
 
         suffixs.each do |suffix|
           path = fis3_asset_path("#{source}#{suffix}")
-          return path if path
+          return path if path.present?
         end
       end
       def fis3_asset_path(source)
