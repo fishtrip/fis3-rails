@@ -34,8 +34,6 @@ module Fis3
         end
       end
 
-      private
-      
       def fis3_valid_source(source, suffixes)
         if suffixes.any?{|suffix| source.end_with?(suffix)}
           return source
@@ -43,7 +41,7 @@ module Fis3
 
         suffixes.each do |suffix|
           ext_source = "#{source}#{suffix}"
-          return ext_source if Fis3::Rails::Manifest.is_asset_exist?(source)
+          return ext_source if Fis3::Rails::Manifest.is_asset_exist?(ext_source)
         end
 
         return nil
