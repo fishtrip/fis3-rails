@@ -5,25 +5,38 @@ module Fis3
 
         def asset_path(source)
           info = asset_info(source)
-          pkg = info['aioPkg']
+          pkg_name = info['aioPkg']
 
-          if pkg.present?
-            return manifest['pkg'][pkg]['uri']
+          # 优先找 'aioPkg' 字段的映射
+          if pkg_name.present?
+            path = pkg_path(pkg_name)
+            dep_path = pkg_dep_path(pak_name)
+
+            return { path: path, dep_path: dep_path }
           end
             
-          info['uri'] || ""
+          path = info['uri'] || ""
+          return { path: path }
         end
 
-        def asset_deps(source)
-          info = asset_info(source)
-          info['deps'] || []
+        private
+        
+        # 查找pkg段落
+        def pkg_path(pkg_name)
+          manifest['pkg'][pkg_name]['uri']
         end
 
-        def asset_css_deps(source)
-          asset_deps(source).select{ |s| s.end_with?(".css") || s.end_with?(".scss") }
-        end
+        # 根据js名称，查找同名的css的路径
+        def pkg_dep_path(pkg_name)
+          ext_name = File.extname(pkg_name)
+          name = File.join(File.dirname(pkg_name), File.basename(pkg_name, ext_name))
 
-        #private
+          dep_name = [File.join(name, '.js'), File.join(name, '.css')].delete(pkg_name)
+          dep_info = manifest['pkg'][dep_name]
+          return nil if dep_info.blank?
+
+          dep_info['uri'] || nil
+        end
         
         def asset_info(source)
           manifest['res'][source] || {}

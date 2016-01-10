@@ -1,0 +1,53 @@
+{
+    "res": {
+        "css/mobile/base.scss": {
+            "uri": "/static/css/mobile/base.css",
+            "type": "css"
+        },
+        "css/mobile/common.scss": {
+            "uri": "/static/css/mobile/common.css",
+            "type": "css"
+        },
+        "js/mobile/base.js": {
+            "uri": "/static/js/mobile/base.js",
+            "type": "js",
+            "deps": [
+                "jquery",
+                "underscore",
+                "lib/react/react.js"
+            ]
+        },
+        "js/mobile/common.js": {
+            "uri": "/static/js/mobile/common.js",
+            "type": "js",
+            "deps": [
+                "jquery",
+                "bootstrap",
+                "module/fishui/mobile/toastr/toastr.js",
+                "module/fishui/mobile/dialog/dialog.js",
+                "module/util/util.js"
+            ],
+            "aioPkg": "public/static/pkg/components/layouts/_mobile_base_js.erb_aio.js"
+        }
+    },
+    "pkg": {
+        "public/static/pkg/components/layouts/_mobile_base_js.erb_aio.js": {
+            "type": "js",
+            "uri": "/static/pkg/components/layouts/_mobile_base_js.erb_aio.js",
+            "has": [
+                "module/fishui/mobile/toastr/toastr.js",
+                "module/fishui/mobile/dialog/dialog.js",
+                "module/util/util.js",
+                "js/mobile/common.js"
+            ]
+        },
+        "public/static/pkg/components/layouts/_mobile_base_js.erb_aio.css": {
+            "type": "js",
+            "uri": "/static/pkg/components/layouts/_mobile_base_js.erb_aio.css",
+            "has": [
+                "module/fishui/mobile/toastr/toastr.scss",
+                "module/fishui/mobile/dialog/dialog.scss"
+            ]
+        }
+    }
+}

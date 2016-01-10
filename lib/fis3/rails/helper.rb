@@ -49,7 +49,13 @@ module Fis3
       end
       def fis3_asset_path(source)
         return "" unless source.present?
-        Fis3::Rails::Manifest.asset_path(source)
+        info = Fis3::Rails::Manifest.asset_path(source)
+        info[:path]
+      end
+      def fis3_asset_dep_path(source)
+        return "" unless source.present?
+        info = Fis3::Rails::Manifest.asset_path(source)
+        info[:dep_path]
       end
     end
   end
