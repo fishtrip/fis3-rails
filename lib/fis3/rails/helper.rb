@@ -18,7 +18,7 @@ module Fis3
           javascript_include_tag(fis3_asset_path(source))
         end
 
-        if dep_path = fis3_asset_dep_path(source)
+        if dep_path = fis3_dep_asset_path(source)
           content_for CSS_PLACEHOLDER do
             stylesheet_link_tag(dep_path)
           end
@@ -53,7 +53,7 @@ module Fis3
         info[:path]
       end
 
-      def fis3_asset_dep_path(source)
+      def fis3_dep_asset_path(source)
         return "" unless source.present?
         info = Fis3::Rails::Manifest.asset_path(source)
         info[:dep_path]

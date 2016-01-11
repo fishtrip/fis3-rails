@@ -29,7 +29,7 @@ describe Fis3::Rails::Helper, "test Rails hepler" do
     fis3_asset_path("js/mobile/common.js").must_equal "/static/pkg/components/layouts/_mobile_base_js.erb_aio.js"
   end
   it "should has correct js link tag" do
-    fis3_asset_dep_path("js/mobile/common.js").must_equal "/static/pkg/components/layouts/_mobile_base_js.erb_aio.css"
+    fis3_dep_asset_path("js/mobile/common.js").must_equal "/static/pkg/components/layouts/_mobile_base_js.erb_aio.css"
   end
 
 end
