@@ -1,8 +1,6 @@
 # Fis3::Rails
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/fis3/rails`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+帮助更好的集成 F.I.S (fis.baidu.com) 前端开发框架和Rails
 
 ## Installation
 
@@ -22,17 +20,42 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+目前提供了两个Helper：
+
+1. fis3_asset_path(asset_nam) 根据资源名称去寻找对应的地址。
+1. fis3_dep_asset_path(asset_nam) 对于js资源，fis可能也编译出来一个css文件，调用这个方法即可。
+
+使用方法：
+1. 在你的layout文件中添加yield，比如
+在<head> 中插入:
+
+```ruby
+<%= yield :header_scripts %>
+```
+
+在</body>前插入：
+<%= yield :footer_scripts %>
+
+1. 调用某个fis js 资源时:
+
+```ruby
+<%= javascript_include_tag fis3_asset_path('js/mobile/base') %>
+<% content_for :header_scripts do %>
+  <%= stylesheet_link_tag fis3_dep_asset_path('js/mobile/base') %>
+<% end %>
+```
+
+1. 调用某个fis css 资源时:
+<%= stylesheet_link_tag fis3_asset_path('css/mobile/base') %>
+
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+TODO.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/fis3-rails.
+Bug reports and pull requests are welcome on GitHub at https://github.com/fishtrip/fis3-rails.
 
 
 ## License
