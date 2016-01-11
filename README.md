@@ -26,15 +26,18 @@ Or install it yourself as:
 1. fis3_dep_asset_path(asset_nam) 对于js资源，fis可能也编译出来一个css文件，调用这个方法即可。
 
 使用方法：
+
 1. 在你的layout文件中添加yield，比如
-在<head> 中插入:
+在head标签中插入:
 
 ```ruby
 <%= yield :header_scripts %>
 ```
 
-在</body>前插入：
+在body标签最后插入：
+```ruby
 <%= yield :footer_scripts %>
+```
 
 1. 调用某个fis js 资源时:
 
@@ -46,7 +49,10 @@ Or install it yourself as:
 ```
 
 1. 调用某个fis css 资源时:
+
+```ruby
 <%= stylesheet_link_tag fis3_asset_path('css/mobile/base') %>
+```
 
 
 ## Development
