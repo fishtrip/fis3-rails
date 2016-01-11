@@ -13,24 +13,21 @@ module Fis3
       def fis3_javascript_tag(source)
         source = fis3_valid_source(source, JS_SUFFIX)
         return "" if source.blank?
-
-        content_for JS_PLACEHOLDER do
-          javascript_include_tag(fis3_asset_path(source))
-        end
-
-        if dep_path = fis3_dep_asset_path(source)
-          content_for CSS_PLACEHOLDER do
-            stylesheet_link_tag(dep_path)
-          end
-        end
+        javascript_include_tag(fis3_asset_path(source))
       end
 
       def fis3_stylesheet_tag(source)
         source = fis3_valid_source(source, CSS_SUFFIX)
         return "" if source.blank?
+        stylesheet_link_tag(fis3_asset_path(source))
+      end
 
-        content_for CSS_PLACEHOLDER do
-          stylesheet_link_tag(fis3_asset_path(source))
+      def fis3_stylesheet_tag_by_js(source)
+        source = fis3_valid_source(source, JS_SUFFIX)
+        return "" if source.blank?
+
+        if dep_path = fis3_dep_asset_path(source)
+          stylesheet_link_tag(dep_path)
         end
       end
 
